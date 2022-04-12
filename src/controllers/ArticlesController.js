@@ -1,8 +1,8 @@
 class ArticlesController {
   renderHomeWithArticles (req, res) {
     const mockArticles = [
-      {id:1, title: 'Artículo de prueba 1', content: 'Contenido de mi artículo'},
-      {id:2, title: 'Artículo de prueba 2', content: 'Contenido de mi artículo'}
+      { id: 1, title: 'Artículo de prueba 1', content: 'Contenido de mi artículo'},
+      { id: 2, title: 'Artículo de prueba 2', content: 'Contenido de mi artículo'}
     ]
     res.render('home', {
       articles: mockArticles
@@ -41,6 +41,10 @@ class ArticlesController {
     const id = 1
 
     res.redirect(`/articles/${id}`)
+  }
+
+  updateAndRenderArticle(req, res) {
+    console.log('Update and Render Article')
   }
 
   deleteArticleAndRenderResponse (req, res) {
