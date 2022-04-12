@@ -1,0 +1,47 @@
+{{> navbar}}
+<div class="container mt-3">
+
+  <!--
+  Si no existe la página se titulará CREAR.
+  Si ya existe la página se titulará UPDATE.
+  -->
+
+  <h1>
+    {{#if id}}
+      Actualizando el artículo "{{title}}" ({{id}})
+    {{else}}
+      Crea un nuevo artículo, por favor
+    {{/if}}
+  </h1>
+
+  <!--
+    Si existe id te manda a UPDATE   /articles/:id/update
+    Si no existe id, a CREAR   /articles/create
+  -->
+
+    <form action="/articles/
+    {{#if id}}
+      {{id}}/update
+      {{else}}
+        create
+    {{/if}}" method="POST">
+
+      <div class="mb-3">
+        <label for="title" class="form-label">Título</label>
+        <input type="text" class="form-control" name="title" aria-describedby="titleHelp" required="true" value="{{title}}">
+        <div id="titleHelp" class="form-text">Utiliza un título llamativo</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="content" class="form-label">Contenido</label>
+        <textarea class="form-control" name="content" rows="3" aria-describedby="contentHelp">{{content}}</textarea>
+        <div id="contentHelp" class="form-text">¿Qué quieres contarle a todos?</div>
+      </div>
+
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div>
+
+      </div>
+    </form>
+</div>

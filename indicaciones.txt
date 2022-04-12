@@ -1,0 +1,21 @@
+Levantar un proyecto NodeJS con Express usando el proyecto base, que cumpla con las especificaciones listadas a continuación:
+
+1) Crear una tabla de libre elección en PlanetScale con MySQL (Pueden ser artículos, memes, contactos, tareas, pokemons, etc...).
+
+2) Crear vistas y controladores correspondientes a formulario de creación y actualización de datos de esta tabla, una vista para listar los datos y otra para mostrar el detalle con un botón de editar o eliminar en ella.
+
+3) Crear cliente de conexión a la base de datos para mysql.
+
+4) Crear DAO para las operaciones en base de datos.
+
+5) Integrar DAO al controlador para ejecutar las consultas a la base de datos.
+
+6) Subir el código a Github.
+
+7) Desplegar a Heroku usando CI/CD (Sí, ahora sí que sí).
+
+8) Grabar un video mostrando el software desplegado en heroku, mostrando su funcionamiento y explicando tanto el DAO como el cliente de conexión. También contarme al final que aprendieron del proyecto.
+
+9) Subir a EVA archivo .txt con los links al repositorio, el proyecto en heroku y el video (Aconsejo usar la plataforma loom para grabarlo).
+
+Saludos y éxito en este proyecto!
