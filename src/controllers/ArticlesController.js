@@ -43,7 +43,7 @@ class ArticlesController {
     res.redirect(`/articles/${id}`)
   }
 
-  updateAndRenderArticle(req, res) {
+  updateAndRenderArticle (req, res) {
     console.log('Update and Render Article')
   }
 
