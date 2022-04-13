@@ -1,9 +1,9 @@
 DATABASE_URL='mysql://1dv1pdyitxof:pscale_pw_ElXE5GxNjJ1lCW17gP6D9kyVEDhkaXM8BtWUxk8qaNQ@varnq2xw25ke.us-east-2.psdb.cloud/todo?ssl={"rejectUnauthorized":true}'
 
-Username:1dv1pdyitxof
-Password:pscale_pw_ElXE5GxNjJ1lCW17gP6D9kyVEDhkaXM8BtWUxk8qaNQ
+Username:8t9s9e5rsetu
+Password:pscale_pw_NOfs65bmC3kOBL1EYJswyRfsMCOCtF1xWqSDXZ-FC-Y
 
 database: todo
-username: 1dv1pdyitxof
+username: 8t9s9e5rsetu
 host: varnq2xw25ke.us-east-2.psdb.cloud
-password: pscale_pw_ElXE5GxNjJ1lCW17gP6D9kyVEDhkaXM8BtWUxk8qaNQ
+password: pscale_pw_NOfs65bmC3kOBL1EYJswyRfsMCOCtF1xWqSDXZ-FC-Y
