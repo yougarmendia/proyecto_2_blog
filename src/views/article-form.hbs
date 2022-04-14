@@ -19,13 +19,7 @@
     Si no existe id, a CREAR   /articles/create
   -->
 
-    <form action="/articles/
-    {{#if id}}
-      {{id}}/update
-      {{else}}
-        create
-    {{/if}}" method="POST">
-
+    <form action="/articles/{{#if id}}{{id}}/update{{else}}create{{/if}}" method="POST">
       <div class="mb-3">
         <label for="title" class="form-label">Título</label>
         <input type="text" class="form-control" name="title" aria-describedby="titleHelp" required="true" value="{{title}}">

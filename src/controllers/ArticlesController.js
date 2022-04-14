@@ -1,21 +1,33 @@
+const ArticlesDAO = require('../models/dao/ArticlesDAO')
+
 class ArticlesController {
-  renderHomeWithArticles (req, res) {
-    const mockArticles = [
-      { id: 1, title: 'Artículo de prueba 1', content: 'Contenido de mi artículo'},
-      { id: 2, title: 'Artículo de prueba 2', content: 'Contenido de mi artículo'}
-    ]
+  constructor (db) {
+    this.articlesDao = new ArticlesDAO(db)
+    this.renderHomeWithArticles = this.renderHomeWithArticles.bind(this)
+    this.renderSingleArticle = this.renderSingleArticle.bind(this)
+    this.renderArticleCreationForm = this.renderArticleCreationForm.bind(this)
+    this.renderArticleUpdateForm = this.renderArticleUpdateForm.bind(this)
+    this.insertAndRenderArticle = this.insertAndRenderArticle.bind(this)
+    this.updateAndRenderArticle = this.updateAndRenderArticle.bind(this)
+    this.deleteArticleAndRenderResponse = this.deleteArticleAndRenderResponse.bind(this)
+  }
+
+  async renderHomeWithArticles (req, res) {
+    const articles = await this.articlesDao.getAll()
     res.render('home', {
-      articles: mockArticles
+      articles
     })
   }
 
-  renderSingleArticle (req, res) {
+  async renderSingleArticle (req, res) {
     const id = req.params.id
+
+    const article = await this.articlesDao.getById(id)
 
     res.render('article', {
       id,
-      title: 'Éste es el título',
-      content: 'Éste es el contenido'
+      title: article.title,
+      content: article.content
     })
   }
 
@@ -23,37 +35,51 @@ class ArticlesController {
     res.render('article-form')
   }
 
-  renderArticleUpdateForm (req, res) {
+  async renderArticleUpdateForm (req, res) {
     const id = req.params.id
+
+    const article = await this.articlesDao.getById(id)
 
     res.render('article-form', {
       id,
-      title: 'Título del artículo a editar',
-      content: 'Contenido del artículo a editar'
+      title: article.title,
+      content: article.content
     })
   }
 
-  insertAndRenderArticle (req, res) {
+  async insertAndRenderArticle (req, res) {
     const title = req.body.title
     const content = req.body.content
 
-    console.log('Aquí se debería insertar el contenido en la db', {title, content})
-    const id = 1
+    const article = { title, content }
+
+    const id = await this.articlesDao.create(article)
 
     res.redirect(`/articles/${id}`)
   }
 
-  updateAndRenderArticle (req, res) {
-    console.log('Update and Render Article')
+  async updateAndRenderArticle (req, res) {
+    const id = req.params.id
+    const title = req.body.title
+    const content = req.body.content
+
+    const article = { title, content, id }
+
+    await this.articlesDao.update(article)
+
+    res.redirect(`/articles/${id}`)
   }
 
-  deleteArticleAndRenderResponse (req, res) {
+  async deleteArticleAndRenderResponse (req, res) {
     const id = req.params.id
-    console.log('Esto debería eliminar', { id })
+    // const article = await this.articlesDao.delete(id)
+    const article = await this.articlesDao.getById(id)
+
+    await this.articlesDao.delete(id)
 
     res.render('article-deleted', {
       id,
-      title: 'Título'
+      title: article.title
     })
   }
 }
