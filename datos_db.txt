@@ -1,6 +1,0 @@
-DATABASE_URL='mysql://tq5wqiaxaa55:pscale_pw_IjokPojiBs3NVg10p5CMN60X8znzpqEisq7NMt1o4Fo@varnq2xw25ke.us-east-2.psdb.cloud/todo?ssl={"rejectUnauthorized":true}'
-
-database: todo
-username: tq5wqiaxaa55
-host: varnq2xw25ke.us-east-2.psdb.cloud
-password: pscale_pw_IjokPojiBs3NVg10p5CMN60X8znzpqEisq7NMt1o4Fo
