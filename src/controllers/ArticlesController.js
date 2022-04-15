@@ -22,13 +22,28 @@ class ArticlesController {
   async renderSingleArticle (req, res) {
     const id = req.params.id
 
-    const article = await this.articlesDao.getById(id)
+    try {
+      /* Ponemos en el try todo el código que dependa de la base de datos */
+      const article = await this.articlesDao.getById(id)
 
-    res.render('article', {
-      id,
-      title: article.title,
-      content: article.content
-    })
+      /* Dondequiera que solicitemos el article y
+      puede que no lo consigamos, nos escudamos de
+      este error (evitamos que la aplicación se caiga)
+      mandamos como respuesta la página 404 */
+      if (!article) {
+        res.status(404).render('404')
+        return
+      }
+
+      res.render('article', {
+        id,
+        title: article.title,
+        content: article.content
+      })
+    } catch (error) {
+      console.log(error)
+      res.status(500).render('500')
+    }
   }
 
   renderArticleCreationForm (req, res) {
@@ -38,49 +53,76 @@ class ArticlesController {
   async renderArticleUpdateForm (req, res) {
     const id = req.params.id
 
-    const article = await this.articlesDao.getById(id)
+    try {
+      const article = await this.articlesDao.getById(id)
 
-    res.render('article-form', {
-      id,
-      title: article.title,
-      content: article.content
-    })
+      if (!article) {
+        res.status(404).render('404')
+        return
+      }
+
+      res.render('article-form', {
+        id,
+        title: article.title,
+        content: article.content
+      })
+    } catch (error) {
+      console.log(error)
+      res.status(500).render('500')
+    }
   }
 
   async insertAndRenderArticle (req, res) {
     const title = req.body.title
     const content = req.body.content
-
     const article = { title, content }
 
-    const id = await this.articlesDao.create(article)
+    try {
+      const id = await this.articlesDao.create(article)
 
-    res.redirect(`/articles/${id}`)
+      res.redirect(`/articles/${id}`)
+    } catch (error) {
+      console.log(error)
+      res.status(500).render('500')
+    }
   }
 
   async updateAndRenderArticle (req, res) {
     const id = req.params.id
     const title = req.body.title
     const content = req.body.content
+    try {
+      const article = { title, content, id }
 
-    const article = { title, content, id }
+      await this.articlesDao.update(article)
 
-    await this.articlesDao.update(article)
-
-    res.redirect(`/articles/${id}`)
+      res.redirect(`/articles/${id}`)
+    } catch (error) {
+      console.log(error)
+      res.status(500).render('500')
+    }
   }
 
   async deleteArticleAndRenderResponse (req, res) {
     const id = req.params.id
-    // const article = await this.articlesDao.delete(id)
-    const article = await this.articlesDao.getById(id)
+    try {
+      const article = await this.articlesDao.getById(id)
 
-    await this.articlesDao.delete(id)
+      if (!article) {
+        res.status(404).render('404')
+        return
+      }
 
-    res.render('article-deleted', {
-      id,
-      title: article.title
-    })
+      await this.articlesDao.delete(id)
+
+      res.render('article-deleted', {
+        id,
+        title: article.title
+      })
+    } catch (error) {
+      console.log(error)
+      res.status(500).render('500')
+    }
   }
 }
 
