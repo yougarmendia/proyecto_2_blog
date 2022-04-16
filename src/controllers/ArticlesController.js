@@ -76,7 +76,8 @@ class ArticlesController {
   async insertAndRenderArticle (req, res) {
     const title = req.body.title
     const content = req.body.content
-    const article = { title, content }
+    const img = req.body.img
+    const article = { title, content, img }
 
     try {
       const id = await this.articlesDao.create(article)
@@ -92,8 +93,9 @@ class ArticlesController {
     const id = req.params.id
     const title = req.body.title
     const content = req.body.content
+    const img = req.body.img
     try {
-      const article = { title, content, id }
+      const article = { title, content, img, id }
 
       await this.articlesDao.update(article)
 
