@@ -1,16 +1,16 @@
 {{> navbar}}
 <div class="container mt-3">
   <header class="my-5">
-    <h1>Bienvenido a mi blog</h1>
-    <p>En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en
-    astillero, adarga antigua, rocín flaco y galgo corredor.</p>
+    <h1>Registro de mi colección</h1>
+    <p>Acá voy llevando un registro de las figuras coleccionables que estoy comprando en el transcurso de los años.</p>
     <a href="/about">¿Quién soy?</a>
   </header>
   <hr>
-  <h3 class="mt-5 mb-3">Últimos artículos</h3>
+  <h3 class="mt-5 mb-3">Últimas adquisiciones</h3>
   {{#each articles}}
     <div class="card mb-3">
       <div class="card-body">
+        <img src="{{img}}" width="250" height="250">
         <h5 class="card-title">{{this.title}}</h5>
         <p class="card-text">{{this.content}}</p>
         <a href="/articles/{{this.id}}" class="btn btn-primary btn-sm">Leer más</a>

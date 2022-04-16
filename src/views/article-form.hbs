@@ -21,19 +21,24 @@
 
     <form action="/articles/{{#if id}}{{id}}/update{{else}}create{{/if}}" method="POST">
       <div class="mb-3">
-        <label for="title" class="form-label">Título</label>
+        <label for="title" class="form-label">Nombre de la figura</label>
         <input type="text" class="form-control" name="title" aria-describedby="titleHelp" required="true" value="{{title}}">
-        <div id="titleHelp" class="form-text">Utiliza un título llamativo</div>
+        <div id="titleHelp" class="form-text">Identifica la figura</div>
       </div>
 
       <div class="mb-3">
         <label for="content" class="form-label">Contenido</label>
         <textarea class="form-control" name="content" rows="3" aria-describedby="contentHelp">{{content}}</textarea>
-        <div id="contentHelp" class="form-text">¿Qué quieres contarle a todos?</div>
+        <div id="contentHelp" class="form-text">¿Qué nuevo juguete compraste?</div>
       </div>
 
       <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <label for="img" class="form-label">Link a la foto de la figura</label>
+        <input type="text" class="form-control" name="img" rows="3" aria-describedby="contentHelp">{{img}}</input>
+      </div>
+
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">registrar</button>
       </div>
 
       </div>

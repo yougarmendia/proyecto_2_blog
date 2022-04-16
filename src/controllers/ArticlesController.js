@@ -38,7 +38,8 @@ class ArticlesController {
       res.render('article', {
         id,
         title: article.title,
-        content: article.content
+        content: article.content,
+        img: article.img
       })
     } catch (error) {
       console.log(error)
